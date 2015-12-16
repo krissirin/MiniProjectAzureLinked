@@ -67,5 +67,33 @@ namespace StockUpdate.Tests.Controllers
             // Assert
             Assert.IsNotNull(result);
         }
+
+        //MVC:  Testing for the create returned by a Controller
+        //[TestMethod]
+        //public void CreateStock()
+        //{
+        //    // Arrange
+        //    var controller = new StocksController();
+
+        //    // Act
+        //    var result = (ViewResult)controller.Create();
+
+        //    // Assert
+        //    Assert.AreEqual("Create", result.ViewName);
+
+        //}
+
+        ////MVC: Testing for Redirection by the create method
+        //[TestMethod]
+        //public void CreateStockRedirectToRouteResult()
+        //{
+        //    // Arrange
+        //    var controller = new StocksController();
+        //    // Act
+        //    var result = (RedirectToRouteResult)controller.Create();
+
+        //    // Assert
+        //    Assert.AreEqual("Create", result);
+        //}
     }
 }

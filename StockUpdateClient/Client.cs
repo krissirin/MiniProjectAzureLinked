@@ -113,11 +113,11 @@ namespace StockViewClient
                         }
                         if(SearchResult != -1)
                         {
-                            Console.WriteLine("Stock Reference for ticker {0} is {1}", tckr, SearchResult);
+                            Console.WriteLine("\nStock Reference for ticker {0} is {1}", tckr, SearchResult);
                         }
                         else
                         {
-                            Console.WriteLine("Stock Reference not found");
+                            Console.WriteLine("\nStock Reference not found");
                         }
                     }
                     else
@@ -177,18 +177,17 @@ namespace StockViewClient
                     client.DefaultRequestHeaders.
                        Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                    Stock listing = new Stock() { StockReference = stockRef, Ticker = tckr, StockName = name, Price = price };
+                    Stock create = new Stock() { StockReference = stockRef, Ticker = tckr, StockName = name, Price = price };
 
                     string path = "api/StocksAPI/" + stockRef.ToString() + "/";
                     
                     // update by Put to /api/StocksAPI/20 a listing serialised in request body
-                    HttpResponseMessage response = await client.PutAsJsonAsync(path, listing);
+                    HttpResponseMessage response = await client.PutAsJsonAsync(path, create);
 
-                    if (!response.IsSuccessStatusCode)
+                    if (response.IsSuccessStatusCode)
                     {
-                        var output = response.Content.ReadAsAsync<Stock>().Result;
                         Console.WriteLine("\nUpdated Stock Details:\nStock Ref: {0}, Ticker: {1}, Name: {2}, Price: {3}",
-                            output.StockReference, output.Ticker, output.StockName, output.Price);
+                            create.StockReference, create.Ticker, create.StockName, create.Price);
                     }
                     else
                     {
@@ -241,26 +240,28 @@ namespace StockViewClient
         {
             //COMMENT OUT TASKS AND CHANGE DETAILS AS APPROPRIATE:
 
-            Task result = GetAllStocks();
-            result.Wait();
+            //Task result = GetAllStocks();
+            //result.Wait();
 
             //Task result1 = AddStock(25, "SFOR", "SalesForce Inc", 59.75);  //Salesforce stcok added    
             //result1.Wait();
 
-            Task result11 = FindStockRef("AAPL");  //Salesforce stock reference found from ticker    
-            result11.Wait();
+            //Task result11 = FindStockRef("SFOR");  //Salesforce stock reference found from ticker    
+            //result11.Wait();
 
-            //Task result2 = ReturnSingleStock(1);      //Stock returned  
+            //Task result2 = ReturnSingleStock(26);      //Salesforce Stock returned  
             //result2.Wait();
 
-            //Task result3 = UpdateStock(1, "AAPL", "Apple Inc", 177.89); //Apple price increased
+            //Task result3 = UpdateStock(26, "SFOR", "SalesForce Inc", 55.34); //Salesforce price increased
             //result3.Wait();
 
-            //Task result4 = DeleteStock(24); //Salesforce stock deleted
+            //Task result4 = DeleteStock(26); //Salesforce stock deleted
             //result4.Wait();
 
             Task result5 = GetAllStocks(); ; //All stocks returned again for inspection
             result5.Wait();
+
+            Console.ReadLine();
 
         }
     }
