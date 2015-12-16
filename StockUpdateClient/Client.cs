@@ -6,7 +6,6 @@ using System.Net.Http.Headers;
 using StockUpdate.Models;
 using StockUpdate.Controllers;
 
-
 namespace StockViewClient
 {
     class Client
@@ -238,11 +237,9 @@ namespace StockViewClient
             }
         }
 
-        // kick off
         static void Main()
         {
             //COMMENT OUT TASKS AND CHANGE DETAILS AS APPROPRIATE:
-
 
             Task result = GetAllStocks();
             result.Wait();
@@ -265,7 +262,6 @@ namespace StockViewClient
             Task result5 = GetAllStocks(); ; //All stocks returned again for inspection
             result5.Wait();
 
-            Console.ReadLine();
         }
     }
 }
